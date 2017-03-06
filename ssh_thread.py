@@ -73,11 +73,11 @@ def sftp(queue_get,localpath,remotepath):
 
 if __name__ == '__main__':
     try:
-        opts,args= opts, args = getopt.getopt(sys.argv[1:], "(hH)C:M:S:L:R:", ["help","cmd=","command=","sendfile=","localpath=","remotepath="])
+        opts, args = getopt.getopt(sys.argv[1:], "(hH)C:M:S:L:R:", ["help","cmd=","command=","sendfile=","localpath=","remotepath="])
         print(opts)
 
         now=datetime.datetime.now()
-        if   len(sys.argv) == 1 :
+        if len(sys.argv) == 1 :
             usage()
             sys.exit()
         if sys.argv[1] in ("-h","-H","--help"):
@@ -103,9 +103,9 @@ if __name__ == '__main__':
             for x in range(0,myqueue.qsize()):
                 if myqueue.empty():
                     break
-                mutex = threading.Lock()
-                mutex.acquire()
-                mutex.release()
+                #mutex = threading.Lock()
+                #mutex.acquire()
+                #mutex.release()
 
                 threads.append(threading.Thread(target=ssh, args=(myqueue.get(),cmd)))
                 for t in threads:
@@ -129,12 +129,12 @@ if __name__ == '__main__':
                 f=l.split()
                 myqueue.put(f)
             file.close()
-            for x in xrange(0,myqueue.qsize()):
+            for x in range(0,myqueue.qsize()):
                 if myqueue.empty():
                     break
-                mutex = threading.Lock()
-                mutex.acquire()
-                mutex.release()
+                #mutex = threading.Lock()
+                #mutex.acquire()
+                #mutex.release()
                 threads.append(threading.Thread(target=sftp, args=(myqueue.get(),localpath,remotepath)))
             for t in threads:
                     t.start()
