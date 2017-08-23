@@ -14,9 +14,9 @@ print(getCurrentTime())
 print(getCurrentDate())
 
 connection = pymysql.connect(host='qdm15474614.my3w.com',
-							user='qdm15474614',
-							password='soosim122927',
-							db='qdm15474614_db',
+							user='xxxxxxx',
+							password='xxxxxxx',
+							db='xxxxxxxxx',
 							port=3306,
 							charset='utf8')
 
